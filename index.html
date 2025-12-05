@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> ZConnect - Web, Design & Réseaux</title>
+  <meta name="description" content="Création de sites web, Design graphique et Solutions Internet Starlink à Zinder.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --secondary: #10b981;
+      --dark: #1f2937;
+      --light: #f9fafb;
+      --gray: #6b7280;
+      --white: #ffffff;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background: var(--light);
+    }
+
+    /* Header Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--white);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1rem;
+      background: var(--white);
+      border-radius: 50%;
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .slogan {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Navigation */
+    .nav {
+      background: var(--white);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-link {
+      padding: 1rem 2rem;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+    }
+
+    .nav-link:hover {
+      background: var(--light);
+      color: var(--primary);
+    }
+
+    .nav-link.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    /* Cards Grid */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      border: 2px solid transparent;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+
+    .card h3 {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card h3::before {
+      content: '→';
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover h3::before {
+      transform: translateX(5px);
+    }
+
+    .card p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--dark);
+    }
+
+    .card ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--secondary);
+      font-weight: bold;
+    }
+
+    /* Intro Section */
+    .intro {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .intro p {
+      font-size: 1.2rem;
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.8;
+    }
+
+    /* Benefits List */
+    .benefits {
+      list-style: none;
+      max-width: 600px;
+      margin: 2rem auto;
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .benefits li {
+      padding: 1rem;
+      padding-left: 2.5rem;
+      position: relative;
+      border-bottom: 1px solid var(--light);
+      font-size: 1.1rem;
+    }
+
+    .benefits li:last-child {
+      border-bottom: none;
+    }
+
+    .benefits li::before {
+      content: '⚡';
+      position: absolute;
+      left: 0;
+      font-size: 1.5rem;
+    }
+
+    /* Contact Form */
+    .contact-section {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-section h2 {
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+
+    .contact-section h2::after {
+      left: 0;
+      transform: none;
+    }
+
+    .contact-info {
+      background: var(--light);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--primary);
+    }
+
+    .contact-info p {
+      margin: 0.75rem 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-info a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .contact-info a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-form label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.875rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .contact-form button {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--white);
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .note {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #92400e;
+    }
+
+    /* Sub Header */
+    .sub-header {
+      background: linear-gradient(135deg, var(--dark) 0%, #374151 100%);
+      color: var(--white);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .sub-header h1 {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--dark);
+      color: var(--white);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .footer p {
+      margin: 0.5rem 0;
+      opacity: 0.9;
+    }
+
+    .footer a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .slogan {
+        font-size: 1rem;
+      }
+
+      .nav {
+        flex-direction: column;
+      }
+
+      .nav-link {
+        padding: 0.875rem 1rem;
+        border-bottom: 1px solid var(--light);
+        border-left: 3px solid transparent;
+      }
+
+      .nav-link.active {
+        border-bottom-color: transparent;
+        border-left-color: var(--primary);
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .section h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Page Selector */
+    .page-selector {
+      text-align: center;
+      margin: 2rem 0;
+      padding: 1rem;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .page-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .page-btn {
+      padding: 0.75rem 1.5rem;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .page-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .page-btn.active {
+      background: var(--secondary);
+    }
+
+    .page-content {
+      display: none;
+    }
+
+    .page-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-selector">
+    <p style="margin-bottom: 0.5rem; color: var(--gray);"> Clique pour naviguer sur le site :</p>
+    <div class="page-buttons">
+      <button class="page-btn active" onclick="showPage('accueil')"> Accueil</button>
+      <button class="page-btn" onclick="showPage('services')">Services</button>
+      <button class="page-btn" onclick="showPage('contact')">Contact</button>
+    </div>
+  </div>
+
+  <!-- PAGE ACCUEIL -->
+  <div id="accueil" class="page-content active">
+    <header class="hero">
+      <div style="width: 80px; height: 80px; margin: 0 auto 1rem; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem;">🌐</div>
+      <div>
+        <h1>SLIM TECH NETWORK </h1>
+        <p class="slogan">Installation Starlink · Configuration MikroTik · Dépannage WiFi à Zinder</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="section intro">
+        <h2>Bienvenue</h2>
+        <p>
+          Je suis Mouslim, technicien réseau basé à Zinder. Je propose des services d'installation Starlink, configuration MikroTik et optimisation des réseaux WiFi pour les particuliers et les entreprises.
+        </p>
+
+        <div class="cards">
+          <a class="card" onclick="showPage('services'); return false;" href="#">
+            <h3>Voir les Services</h3>
+            <p>Installation, configuration et dépannage réseau professionnel adaptés à vos besoins.</p>
+          </a>
+          <a class="card" onclick="showPage('contact'); return false;" href="#">
+            <h3>Contactez-moi</h3>
+            <p>posez vos questions par WhatsApp ou email.</p>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2025 SLIM TECH NETWORK — Services réseau professionnels à Zinder.</p>
+      <p>WhatsApp : <a href="https://wa.me/22782199929" target="_blank">+227 82 19 99 29</a></p>
+    </footer>
+  </div>
+
+  <!-- PAGE SERVICES -->
+  <div id="services" class="page-content">
+    <header class="sub-header">
+      <h1>Nos Services Professionnels</h1>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="cards">
+          <article class="card">
+            <h3>Installation Starlink</h3>
+            <p>Installation complète de votre système Starlink avec alignement professionnel, test de performance et optimisation du réseau local pour une connexion maximale.</p>
+            <ul>
+              <li>Alignement professionnel de l'antenne</li>
+              <li>Test de vitesse et performance</li>
+              <li>Optimisation du réseau local</li>
+              <li>Configuration initiale complète</li>
+              <li>Formation à l'utilisation</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Configuration MikroTik et TP_link</h3>
+            <p>Solutions professionnelles pour entreprises : VPN sécurisés, segmentation LAN, PPPoE, firewall avancé, QoS et gestion de bande passante.</p>
+            <ul>
+              <li>Configuration VPN sécurisés</li>
+              <li>Segmentation et gestion LAN</li>
+              <li>Firewall et règles avancées</li>
+              <li>Quality of Service (QoS)</li>
+              <li>perssonalise pages captif</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Dépannage WiFi</h3>
+            <p>Couverture faible ? Déconnexions fréquentes ? Lenteur réseau ? Je diagnostique et corrige tous vos problèmes WiFi rapidement.</p>
+            <ul>
+              <li>Analyse complète du signal</li>
+              <li>Optimisation canaux et puissance</li>
+              <li>Résolution des interférences</li>
+              <li>Conseils équipements adaptés</li>
+              <li>Extension de couverture</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="cards">
+          <a class="card" onclick="showPage('contact'); return false;" href="#">
+            <h3>Demander un Devis</h3>
+            <p>Contactez-nous par WhatsApp ou email.</p>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2025 SLIM TECH NETWORK — Services réseau professionnels à Zinder</p>
+      <p>WhatsApp : <a href="https://wa.me/22782199929" target="_blank">+227 82 19 99 29</a></p>
+    </footer>
+  </div>
+
+  <!-- PAGE CONTACT -->
+  <div id="contact" class="page-content">
+    <header class="sub-header">
+      <h1>Contactez-nous</h1>
+    </header>
+
+    <main>
+      <section class="section contact-section">
+        <h2>Parlons de Votre Projet</h2>
+
+        <div class="contact-info">
+          <p><strong>📱 WhatsApp :</strong> <a href="https://wa.me/22782199929" target="_blank">+227 82 19 99 29</a></p>
+          <p><strong>✉️ Email :</strong> <a href="mailto:contact@zconnect.com">mouslimyac@.com</a></p>
+          <p><strong>📍 Localisation :</strong> Zinder, Niger</p>
+        </div>
+
+        <form class="contact-form" action="https://formspree.io/f/xyzrpbrp" method="POST">
+          <label>
+            Nom complet
+            <input type="text" name="name" placeholder="Votre nom" required>
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="_replyto" placeholder="votre@email.com" required>
+          </label>
+
+          <label>
+            Téléphone (optionnel)
+            <input type="tel" name="phone" placeholder="+227...">
+          </label>
+
+          <label>
+            Service demandé
+            <select name="service">
+              <option value="">Sélectionnez un service</option>
+              <option value="starlink">Installation Starlink</option>
+              <option value="mikrotik">Configuration MikroTik</option>
+              <option value="wifi">Dépannage WiFi</option>
+              <option value="autre">Autre service</option>
+            </select>
+          </label>
+
+          <label>
+            Votre message
+            <textarea name="message" rows="5" placeholder="Décrivez votre besoin..." required></textarea>
+          </label>
+
+          <button type="submit">📤 Envoyer le Message</button>
+        </form>
+
+
+    <footer class="footer">
+      <p>© 2025 SLIM TECH NETWORK — Services réseau professionnels à Zinder</p>
+      <p>WhatsApp : <a href="https://wa.me/22782199929" target="_blank">+227 82 19 99 29</a></p>
+    </footer>
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      // Masquer toutes les pages
+      const pages = document.querySelectorAll('.page-content');
+      pages.forEach(page => page.classList.remove('active'));
+      
+      // Afficher la page sélectionnée
+      document.getElementById(pageId).classList.add('active');
+      
+      // Mettre à jour les boutons
+      const buttons = document.querySelectorAll('.page-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      // Scroll vers le haut
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
